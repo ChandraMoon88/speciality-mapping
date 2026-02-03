@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Triage Assistant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f8f9fa;
+            min-height: 100vh;
+            color: #1a1a2e;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            padding: 16px 32px;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+
+        .logo h1 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+
+        .logo span {
+            font-size: 12px;
+            color: #6b7280;
+            font-weight: 400;
+        }
+
+        /* Main Container */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 24px;
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 24px;
+            min-height: calc(100vh - 80px);
+        }
+
+        /* Input Panel (Left) */
+        .input-panel {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .panel-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .symptom-input {
+            width: 100%;
+            min-height: 120px;
+            padding: 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 15px;
+            font-family: inherit;
+            resize: vertical;
+            transition: border-color 0.2s;
+        }
+
+        .symptom-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .symptom-input::placeholder {
+            color: #9ca3af;
+        }
+
+        /* Language Selector */
+        .form-group {
+            margin-top: 16px;
+        }
+
+        .form-label {
+            font-size: 13px;
+            font-weight: 500;
+            color: #6b7280;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .language-select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 14px;
+            font-family: inherit;
+            background: white;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+
+        .language-select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        /* Voice Toggle */
+        .voice-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 16px;
+            padding: 12px 16px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .voice-toggle label {
+            font-size: 14px;
+            color: #4b5563;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 44px;
+            height: 24px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #d1d5db;
+            transition: 0.3s;
+            border-radius: 24px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: 0.3s;
+            border-radius: 50%;
+        }
+
+        input:checked+.toggle-slider {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        input:checked+.toggle-slider:before {
+            transform: translateX(20px);
+        }
+
+        /* Buttons */
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 14px 24px;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: #f3f4f6;
+            color: #4b5563;
+        }
+
+        .btn-secondary:hover {
+            background: #e5e7eb;
+        }
+
+        .btn-mic {
+            width: 48px;
+            flex: none;
+            background: #f3f4f6;
+            color: #4b5563;
+        }
+
+        .btn-mic.recording {
+            background: #fee2e2;
+            color: #dc2626;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.6;
+            }
+        }
+
+        /* Response Panel (Right) */
+        .response-panel {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            min-height: 400px;
+        }
+
+        .response-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .response-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .language-badge {
+            padding: 6px 12px;
+            background: #f3f4f6;
+            border-radius: 20px;
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        /* Empty State */
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            text-align: center;
+            color: #9ca3af;
+        }
+
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .empty-state h3 {
+            font-size: 18px;
+            font-weight: 500;
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
+
+        .empty-state p {
+            font-size: 14px;
+            max-width: 300px;
+        }
+
+        /* Result Content */
+        .result-content {
+            display: none;
+        }
+
+        .result-content.active {
+            display: block;
+        }
+
+        /* Severity Badge */
+        .severity-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .severity-none {
+            background: #f3f4f6;
+            color: #6b7280;
+        }
+
+        .severity-low {
+            background: #d1fae5;
+            color: #047857;
+        }
+
+        .severity-moderate {
+            background: #fef3c7;
+            color: #b45309;
+        }
+
+        .severity-high {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .severity-emergency {
+            background: #dc2626;
+            color: white;
+        }
+
+        /* Non-Medical Message */
+        .non-medical-message {
+            background: #fef3c7;
+            border: 1px solid #fcd34d;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .non-medical-message h3 {
+            color: #b45309;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .non-medical-message p {
+            color: #92400e;
+            font-size: 14px;
+        }
+
+        /* AI Response */
+        .ai-response {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+            line-height: 1.7;
+            font-size: 15px;
+            white-space: pre-wrap;
+        }
+
+        /* Specialist Cards */
+        .specialists-section h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #6b7280;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .specialist-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 12px;
+            border-left: 4px solid #667eea;
+        }
+
+        .specialist-card.primary {
+            border-left-color: #10b981;
+            background: #ecfdf5;
+        }
+
+        .specialist-name {
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .specialist-confidence {
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        /* Audio Player */
+        .audio-section {
+            margin-top: 24px;
+            padding-top: 16px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .audio-player {
+            width: 100%;
+            height: 40px;
+        }
+
+        /* Loading */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .loading.active {
+            display: block;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #e5e7eb;
+            border-top-color: #667eea;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 16px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Responsive */
+        .input-panel {
+            position: static;
+        }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">
+            <div class="logo-icon">🏥</div>
+            <div>
+                <h1>Medical Triage Assistant</h1>
+                <span>Multilingual AI-Powered Health Guidance</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-container">
+        
+        <aside class="input-panel">
+            <h2 class="panel-title">📝 Describe Your Symptoms</h2>
+
+            <textarea id="symptoms" class="symptom-input"
+                placeholder="Type your symptoms here...&#10;&#10;Examples:&#10;• I have a headache and fever&#10;• Chest pain when breathing&#10;• దగ్గు మరియు జ్వరం (Telugu)"></textarea>
+
+            <div class="form-group">
+                <label class="form-label">Response Language</label>
+                <select id="language" class="language-select">
+                    <option value="">Auto-detect</option>
+                    <option value="en">English</option>
+                    <option value="te">తెలుగు (Telugu)</option>
+                    <option value="hi">हिन्दी (Hindi)</option>
+                    <option value="ta">தமிழ் (Tamil)</option>
+                    <option value="bn">বাংলা (Bengali)</option>
+                    <option value="mr">मराठी (Marathi)</option>
+                    <option value="gu">ગુજરાતી (Gujarati)</option>
+                    <option value="kn">ಕನ್ನಡ (Kannada)</option>
+                    <option value="ml">മലയാളം (Malayalam)</option>
+                    <option value="pa">ਪੰਜਾਬੀ (Punjabi)</option>
+                    <option value="ur">اردو (Urdu)</option>
+                    <option value="es">Español (Spanish)</option>
+                    <option value="fr">Français (French)</option>
+                    <option value="de">Deutsch (German)</option>
+                    <option value="ar">العربية (Arabic)</option>
+                    <option value="zh">中文 (Chinese)</option>
+                    <option value="ja">日本語 (Japanese)</option>
+                </select>
+            </div>
+
+            <div class="voice-toggle">
+                <label>🔊 Voice Output</label>
+                <div class="toggle-switch">
+                    <input type="checkbox" id="voiceToggle" checked>
+                    <span class="toggle-slider"></span>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn btn-mic" id="micBtn" title="Voice Input">🎤</button>
+                <button class="btn btn-primary" id="analyzeBtn">🔍 Analyze</button>
+                <button class="btn btn-secondary" id="clearBtn">Clear</button>
+            </div>
+        </aside>
+
+        
+        <section class="response-panel">
+            <div class="response-header">
+                <h2 class="response-title">Analysis Result</h2>
+                <span class="language-badge" id="detectedLang">--</span>
+            </div>
+
+            
+            <div class="empty-state" id="emptyState">
+                <div class="empty-state-icon">💬</div>
+                <h3>No Analysis Yet</h3>
+                <p>Enter your symptoms on the left and click "Analyze" to get personalized health guidance.</p>
+            </div>
+
+            
+            <div class="loading" id="loadingState">
+                <div class="spinner"></div>
+                <p>Analyzing your symptoms...</p>
+            </div>
+
+            
+            <div class="result-content" id="resultContent">
+                
+                <div class="non-medical-message" id="nonMedicalMsg" style="display: none;">
+                    <h3>⚠️ Not a Medical Query</h3>
+                    <p>Please describe your health symptoms or concerns. For example: "I have a headache" or "chest
+                        pain".</p>
+                </div>
+
+                
+                <div id="medicalResult">
+                    <div class="severity-badge" id="severityBadge">
+                        <span id="severityIcon">✓</span>
+                        <span id="severityText">Low</span>
+                    </div>
+
+                    <div class="ai-response" id="aiResponse" style="display:none;"></div>
+                    
+
+                    <div class="specialists-section" id="specialistsSection" style="display: none;">
+                        <h4>Select a Specialist to Continue</h4>
+                        <div id="specialistsList"></div>
+                    </div>
+
+                    <div class="audio-section" id="audioSection" style="display: none;">
+                        <audio id="audioPlayer" class="audio-player" controls></audio>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const API_BASE = '';
+
+
+        const symptomsInput = document.getElementById('symptoms');
+        const languageSelect = document.getElementById('language');
+        const voiceToggle = document.getElementById('voiceToggle');
+        const analyzeBtn = document.getElementById('analyzeBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const micBtn = document.getElementById('micBtn');
+
+
+        const emptyState = document.getElementById('emptyState');
+        const loadingState = document.getElementById('loadingState');
+        const resultContent = document.getElementById('resultContent');
+        const nonMedicalMsg = document.getElementById('nonMedicalMsg');
+        const medicalResult = document.getElementById('medicalResult');
+        const detectedLang = document.getElementById('detectedLang');
+
+
+        clearBtn.addEventListener('click', () => {
+            symptomsInput.value = '';
+            resultContent.classList.remove('active');
+            emptyState.style.display = 'flex';
+            document.getElementById('medicalResult').style.display = 'none';
+        });
+
+
+        analyzeBtn.addEventListener('click', async () => {
+            const symptoms = symptomsInput.value.trim();
+            if (!symptoms) {
+                alert('Please enter your symptoms');
+                return;
+            }
+
+
+            emptyState.style.display = 'none';
+            loadingState.classList.add('active');
+            resultContent.classList.remove('active');
+            analyzeBtn.disabled = true;
+
+            try {
+                const response = await fetch(`${API_BASE}/predict/multi`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        symptoms: symptoms,
+                        language: languageSelect.value || null
+                    })
+                });
+
+                const data = await response.json();
+                displayResult(data);
+
+
+                if (data.ai_response) {
+                    playVoice(data.ai_response, data.language || 'en');
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed to analyze symptoms. Please try again.');
+            } finally {
+                loadingState.classList.remove('active');
+                analyzeBtn.disabled = false;
+            }
+        });
+
+
+        function displayResult(data) {
+            resultContent.classList.add('active');
+            detectedLang.textContent = getLanguageName(data.language || 'en');
+
+
+            if (data.is_medical_query === false || data.primary_specialist === 'Not a medical query') {
+                nonMedicalMsg.style.display = 'block';
+                medicalResult.style.display = 'none';
+                return;
+            }
+
+
+            if (data.is_negation_only === true) {
+                nonMedicalMsg.innerHTML = `
+                    <h3>✓ No Symptoms Detected</h3>
+                    <p>${data.urgency_message || 'You appear to be healthy! If you have concerns, please describe your symptoms.'}</p>
+                `;
+                nonMedicalMsg.style.display = 'block';
+                nonMedicalMsg.style.background = '#d1fae5';
+                nonMedicalMsg.style.borderColor = '#10b981';
+                nonMedicalMsg.querySelector('h3').style.color = '#047857';
+                nonMedicalMsg.querySelector('p').style.color = '#065f46';
+                medicalResult.style.display = 'none';
+                return;
+            }
+
+            nonMedicalMsg.style.display = 'none';
+            medicalResult.style.display = 'block';
+
+
+            const severity = data.severity || 'low';
+            const severityBadge = document.getElementById('severityBadge');
+            const severityIcon = document.getElementById('severityIcon');
+            const severityText = document.getElementById('severityText');
+
+            severityBadge.className = 'severity-badge severity-' + severity.toLowerCase();
+
+            const severityConfig = {
+                'none': { icon: '✓', text: 'No Concern' },
+                'low': { icon: '✓', text: 'Low Priority' },
+                'moderate': { icon: '⚠️', text: 'Moderate' },
+                'high': { icon: '🔴', text: 'High Priority' },
+                'emergency': { icon: '🚨', text: 'EMERGENCY' }
+            };
+
+            const config = severityConfig[severity.toLowerCase()] || severityConfig['low'];
+            severityIcon.textContent = config.icon;
+            severityText.textContent = config.text;
+
+
+            const specialistsSection = document.getElementById('specialistsSection');
+            const specialistsList = document.getElementById('specialistsList');
+            specialistsList.innerHTML = '';
+
+            const aiText = data.ai_response || '';
+
+
+            const priorityBlocks = aiText.split(/(?=(?:🥇|🥈|🥉)?\s*Priority\s*\d+:)/gi).filter(b => b.trim());
+
+            let cardIndex = 0;
+            priorityBlocks.forEach(block => {
+
+                const headerMatch = block.match(/Priority\s*(\d+):\s*(.+?)\s*-\s*Score:\s*([\d\.,]+)%?/i);
+                if (!headerMatch) return;
+
+                const priorityNum = parseInt(headerMatch[1]);
+                const name = headerMatch[2].trim();
+
+
+                const reasoningMatch = block.match(/Reasoning:\s*(.+?)(?=\n\n|$)/is);
+                const reasoning = reasoningMatch ? reasoningMatch[1].trim() : '';
+
+
+                const priorityConfig = {
+                    1: { label: '1st Priority', color: '#10b981', bg: '#ecfdf5' },
+                    2: { label: '2nd Priority', color: '#f59e0b', bg: '#fffbeb' },
+                    3: { label: '3rd Priority', color: '#6b7280', bg: '#f3f4f6' }
+                };
+                const pConfig = priorityConfig[priorityNum] || priorityConfig[3];
+
+                const card = document.createElement('div');
+                card.className = 'specialist-card';
+                card.style.borderLeftColor = pConfig.color;
+                card.style.background = pConfig.bg;
+
+                card.innerHTML = `
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                        <span class="specialist-name">${name}</span>
+                        <span style="font-weight:bold; color:${pConfig.color}; padding:4px 10px; background:white; border-radius:12px; font-size:12px;">${pConfig.label}</span>
+                    </div>
+                    <div style="font-size:13px; color:#4b5563; line-height:1.4; margin-bottom:8px;">${reasoning.replace(/\n/g, '<br>')}</div>
+                `;
+                specialistsList.appendChild(card);
+                cardIndex++;
+            });
+
+
+            let specialistNames = [];
+
+            if (cardIndex > 0) {
+
+                for (let i = 1; i <= 3; i++) {
+                    const match = priorityBlocks.find(b => b.match(new RegExp(`Priority\\s*${i}:`, 'i')));
+                    if (match) {
+                        const nameMatch = match.match(new RegExp(`Priority\\s*${i}:\\s*([^-]+)`, 'i'));
+                        if (nameMatch) {
+                            specialistNames.push(nameMatch[1].replace(/[🥇🥈🥉]/g, '').trim());
+                        }
+                    }
+                }
+
+
+                if (specialistNames.length > 0) {
+                    const headerDiv = document.createElement('div');
+                    headerDiv.style.marginBottom = "12px";
+                    headerDiv.style.fontWeight = "600";
+                    headerDiv.style.color = "#1f2937";
+                    headerDiv.style.backgroundColor = "#f3f4f6";
+                    headerDiv.style.padding = "10px";
+                    headerDiv.style.borderRadius = "8px";
+                    headerDiv.style.borderLeft = "4px solid #667eea";
+
+
+                    let message = `For your symptoms consult <strong>${specialistNames[0]}</strong> first`;
+                    if (specialistNames.length >= 2) {
+                        message += `, subsequently <strong>${specialistNames[1]}</strong>`;
+                    }
+                    if (specialistNames.length >= 3) {
+                        message += `, <strong>${specialistNames[2]}</strong>`;
+                    }
+                    message += `, in that order.`;
+                    headerDiv.innerHTML = message;
+
+                    specialistsList.insertBefore(headerDiv, specialistsList.firstChild);
+                }
+
+                specialistsSection.style.display = 'block';
+            } else {
+                specialistsSection.style.display = 'none';
+            }
+        }
+
+
+        async function playVoice(text, lang) {
+            try {
+                const response = await fetch(`${API_BASE}/tts`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ text: text.substring(0, 500), language: lang })
+                });
+
+                if (response.ok) {
+                    const blob = await response.blob();
+                    const url = URL.createObjectURL(blob);
+                    const audioSection = document.getElementById('audioSection');
+                    const audioPlayer = document.getElementById('audioPlayer');
+                    audioSection.style.display = 'block';
+                    audioPlayer.src = url;
+                    audioPlayer.play();
+                }
+            } catch (e) {
+                console.error('TTS error:', e);
+            }
+        }
+
+
+        clearBtn.addEventListener('click', () => {
+            symptomsInput.value = '';
+            emptyState.style.display = 'flex';
+            resultContent.classList.remove('active');
+            document.getElementById('audioSection').style.display = 'none';
+        });
+
+
+        let recognition = null;
+        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            recognition = new SpeechRecognition();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+
+            recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript;
+                symptomsInput.value = transcript;
+                micBtn.classList.remove('recording');
+            };
+
+            recognition.onerror = () => {
+                micBtn.classList.remove('recording');
+            };
+
+            recognition.onend = () => {
+                micBtn.classList.remove('recording');
+            };
+        }
+
+        micBtn.addEventListener('click', () => {
+            if (!recognition) {
+                alert('Voice input not supported in this browser');
+                return;
+            }
+
+            if (micBtn.classList.contains('recording')) {
+                recognition.stop();
+            } else {
+                const lang = languageSelect.value || 'en';
+                const langMap = {
+                    'en': 'en-US', 'te': 'te-IN', 'hi': 'hi-IN', 'ta': 'ta-IN',
+                    'bn': 'bn-IN', 'mr': 'mr-IN', 'gu': 'gu-IN', 'kn': 'kn-IN',
+                    'ml': 'ml-IN', 'es': 'es-ES', 'fr': 'fr-FR', 'de': 'de-DE'
+                };
+                recognition.lang = langMap[lang] || 'en-US';
+                recognition.start();
+                micBtn.classList.add('recording');
+            }
+        });
+
+
+        function getLanguageName(code) {
+            const names = {
+                'en': 'English', 'te': 'Telugu', 'hi': 'Hindi', 'ta': 'Tamil',
+                'bn': 'Bengali', 'mr': 'Marathi', 'gu': 'Gujarati', 'kn': 'Kannada',
+                'ml': 'Malayalam', 'es': 'Spanish', 'fr': 'French', 'de': 'German',
+                'ar': 'Arabic', 'zh': 'Chinese', 'ja': 'Japanese'
+            };
+            return names[code] || code;
+        }
+
+
+        symptomsInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                analyzeBtn.click();
+            }
+        });
+    </script>
+</body>
+
+</html>
