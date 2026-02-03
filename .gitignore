@@ -1,0 +1,15 @@
+# Model cache (large files - download at runtime)
+.model_cache/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
