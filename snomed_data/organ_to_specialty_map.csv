@@ -1,0 +1,153 @@
+organ_system_id,organ_system_name,primary_specialty,secondary_specialty
+113257007,Structure of cardiovascular system,Cardiologist,Emergency Medicine Physician
+80891009,Heart structure,Cardiologist,Cardiothoracic Surgeon
+53085002,Structure of right ventricular structure,Cardiologist,Cardiothoracic Surgeon
+87878005,Left ventricular structure,Cardiologist,Cardiothoracic Surgeon
+44627009,Structure of right atrium,Cardiologist,Cardiothoracic Surgeon
+68300000,Structure of left atrium,Cardiologist,Cardiothoracic Surgeon
+41801008,Coronary artery structure,Cardiologist,Cardiothoracic Surgeon
+76015000,Pericardial structure,Cardiologist,Cardiothoracic Surgeon
+15825003,Structure of aorta,Cardiologist,Vascular Surgeon
+17401000,Cardiac valve structure,Cardiologist,Cardiothoracic Surgeon
+59820001,Structure of blood vessel,Vascular Surgeon,Cardiologist
+51114001,Structure of artery,Vascular Surgeon,Cardiologist
+29092000,Structure of vein,Vascular Surgeon,Cardiologist
+20139000,Structure of respiratory system,Pulmonologist,Thoracic Surgeon
+39607008,Structure of lung,Pulmonologist,Thoracic Surgeon
+44567001,Structure of trachea,Pulmonologist,Thoracic Surgeon
+955009,Structure of bronchus,Pulmonologist,Thoracic Surgeon
+3120008,Structure of pleura,Pulmonologist,Thoracic Surgeon
+5798000,Diaphragm structure,Pulmonologist,Thoracic Surgeon
+4596009,Structure of larynx,ENT Specialist,Pulmonologist
+25087005,Structure of digestive system,Gastroenterologist,General Surgeon
+122865005,Structure of gastrointestinal tract,Gastroenterologist,General Surgeon
+69695003,Structure of stomach,Gastroenterologist,General Surgeon
+71854001,Structure of colon,Gastroenterologist,Colorectal Surgeon
+32849002,Structure of esophagus,Gastroenterologist,General Surgeon
+38848004,Structure of duodenum,Gastroenterologist,General Surgeon
+30315005,Structure of small intestine,Gastroenterologist,General Surgeon
+66754008,Structure of appendix,General Surgeon,Gastroenterologist
+34402009,Structure of rectum,Proctologist,Colorectal Surgeon
+53342003,Structure of anus,Proctologist,Colorectal Surgeon
+10200004,Structure of liver,Hepatologist,Gastroenterologist
+28231008,Structure of gallbladder,Gastroenterologist,General Surgeon
+15776009,Structure of pancreas,Gastroenterologist,General Surgeon
+78961009,Structure of spleen,Hematologist,General Surgeon
+122489005,Structure of urinary system,Urologist,Nephrologist
+64033007,Structure of kidney,Nephrologist,Urologist
+89837001,Structure of urinary bladder,Urologist,Nephrologist
+87953007,Structure of ureter,Urologist,Nephrologist
+13648007,Structure of urethra,Urologist,Nephrologist
+41216001,Structure of prostate,Urologist,Oncologist
+21514008,Structure of nervous system,Neurologist,Neurosurgeon
+12738006,Structure of brain,Neurologist,Neurosurgeon
+113305005,Structure of cerebellum,Neurologist,Neurosurgeon
+83678007,Structure of cerebrum,Neurologist,Neurosurgeon
+1101003,Structure of cranial meninges,Neurologist,Neurosurgeon
+2748008,Structure of spinal cord,Neurologist,Neurosurgeon
+25238003,Structure of cranial nerve,Neurologist,Neurosurgeon
+84782009,Peripheral nerve structure,Neurologist,Physiatrist
+48075008,Structure of endocrine system,Endocrinologist,Internal Medicine Physician
+69748006,Structure of thyroid gland,Endocrinologist,ENT Specialist
+23451007,Structure of adrenal gland,Endocrinologist,Internal Medicine Physician
+56329008,Structure of pituitary gland,Endocrinologist,Neurosurgeon
+111002,Structure of parathyroid gland,Endocrinologist,ENT Specialist
+18639004,Structure of pineal gland,Endocrinologist,Neurosurgeon
+181369001,Entire bone of lower limb,Orthopedic Surgeon,Rheumatologist
+72696002,Structure of knee region,Orthopedic Surgeon,Rheumatologist
+119235005,Structure of skeletal system,Orthopedic Surgeon,Rheumatologist
+71616004,Structure of skeletal muscle,Orthopedic Surgeon,Physiatrist
+71388002,Bone structure,Orthopedic Surgeon,Rheumatologist
+302553009,Entire musculoskeletal system,Orthopedic Surgeon,Rheumatologist
+34340008,Structure of tendon,Orthopedic Surgeon,Physiatrist
+182201002,Structure of hip,Orthopedic Surgeon,Rheumatologist
+16982005,Structure of shoulder region,Orthopedic Surgeon,Rheumatologist
+76248009,Structure of elbow region,Orthopedic Surgeon,Rheumatologist
+8205005,Structure of wrist,Orthopedic Surgeon,Rheumatologist
+344001,Structure of ankle,Orthopedic Surgeon,Physiatrist
+421060004,Structure of vertebral column,Orthopedic Surgeon,Neurosurgeon
+289959001,Structure of musculoskeletal structure of limb,Orthopedic Surgeon,Physiatrist
+39352004,Structure of joint,Orthopedic Surgeon,Rheumatologist
+52082005,Structure of ligament,Orthopedic Surgeon,Physiatrist
+309312004,Structure of cartilage,Orthopedic Surgeon,Rheumatologist
+56459004,Structure of foot,Orthopedic Surgeon,Podiatrist
+85562004,Structure of hand,Orthopedic Surgeon,Plastic Surgeon
+39937001,Structure of skin,Dermatologist,Plastic Surgeon
+181469002,Entire skin,Dermatologist,Plastic Surgeon
+72651009,Structure of nail,Dermatologist,Podiatrist
+52795006,Structure of hair,Dermatologist,Trichologist
+71966008,Structure of subcutaneous tissue,Dermatologist,Plastic Surgeon
+78076003,Structure of reproductive system,Obstetrician,Gynecologist
+81024003,Structure of male reproductive system,Urologist,Andrologist
+362874006,Structure of female reproductive system,Gynecologist,Obstetrician
+35039007,Structure of uterus,Gynecologist,Obstetrician
+15497006,Structure of ovary,Gynecologist,Reproductive Endocrinologist
+31435000,Structure of fallopian tube,Gynecologist,Reproductive Endocrinologist
+71252005,Structure of cervix,Gynecologist,Oncologist
+76784001,Structure of vagina,Gynecologist,Obstetrician
+13881006,Structure of testis,Urologist,Andrologist
+18911002,Structure of penis,Urologist,Andrologist
+76752008,Structure of breast,General Surgeon,Oncologist
+69536005,Structure of head,ENT Specialist,Neurologist
+361355005,Structure of ear,ENT Specialist,Audiologist
+25374005,Structure of middle ear,ENT Specialist,Audiologist
+312808006,Structure of inner ear,ENT Specialist,Audiologist
+42859004,Structure of tympanic membrane,ENT Specialist,Audiologist
+45206002,Structure of nasal structure,ENT Specialist,Allergist
+2095001,Structure of sinus,ENT Specialist,Allergist
+75573002,Structure of tonsil,ENT Specialist,General Surgeon
+54066008,Structure of pharynx,ENT Specialist,General Surgeon
+385294005,Structure of salivary gland,ENT Specialist,General Surgeon
+81745001,Structure of eye,Ophthalmologist,Optometrist
+244486005,Structure of entire eye,Ophthalmologist,Optometrist
+5665001,Structure of retina,Ophthalmologist,Optometrist
+28726007,Structure of cornea,Ophthalmologist,Optometrist
+78076003,Structure of lens,Ophthalmologist,Optometrist
+11000121,Structure of conjunctiva,Ophthalmologist,Optometrist
+303942000,Structure of hematopoietic system,Hematologist,Oncologist
+127882003,Entire immune system,Immunologist,Allergist
+59441001,Structure of lymph node,Hematologist,Oncologist
+234085002,Structure of bone marrow,Hematologist,Oncologist
+245543004,Structure of tooth,Dentist,Oral Surgeon
+113279002,Structure of gum,Dentist,Periodontist
+91609006,Structure of mandible,Oral Surgeon,Dentist
+362862003,Entire mouth region,Dentist,ENT Specialist
+362937008,Structure of viscus,Internal Medicine Physician,General Surgeon
+38266002,Entire body as a whole,Internal Medicine Physician,General Practitioner
+51185008,Thoracic structure,Cardiologist,Pulmonologist
+67734004,Structure of thoracic segment of trunk,Cardiologist,Pulmonologist
+416550000,Chest and/or abdomen structure,Internal Medicine Physician,General Practitioner
+818983003,Structure of abdomen,Gastroenterologist,General Surgeon
+12921003,Structure of pelvis,Urologist,Gynecologist
+45048000,Structure of neck,ENT Specialist,Neurologist
+89545001,Structure of face,Plastic Surgeon,ENT Specialist
+77568009,Structure of back of trunk,Orthopedic Surgeon,Neurosurgeon
+423857001,Structure of half of body lateral to midsagittal plane,General Practitioner,Internal Medicine Physician
+21793004,Connective tissue structure,Rheumatologist,Orthopedic Surgeon
+26107004,Structure of musculoskeletal system,Orthopedic Surgeon,Rheumatologist
+128263001,Lower body structure,Orthopedic Surgeon,General Practitioner
+128262006,Upper body structure,Orthopedic Surgeon,General Practitioner
+38866009,Body part structure,General Practitioner,Internal Medicine Physician
+421663001,Structure of bone organ,Orthopedic Surgeon,Rheumatologist
+785818007,Structure of joint region,Orthopedic Surgeon,Rheumatologist
+87784001,Structure of soft tissue,Orthopedic Surgeon,Plastic Surgeon
+667009,Embryonic structure,Obstetrician,Gynecologist
+312717002,Structure of regional musculoskeletal system,Orthopedic Surgeon,Rheumatologist
+14016003,Bone marrow structure,Hematologist,Oncologist
+91725007,Serous sac structure,Internal Medicine Physician,General Surgeon
+89890002,Structure of lymphatic system,Hematologist,Immunologist
+245255009,Structure of lymphoreticular system,Hematologist,Immunologist
+362837007,Entire cell,General Practitioner,Hematologist
+26864007,Structure of product of conception,Obstetrician,Gynecologist
+416775004,Chest and/or abdomen and/or pelvis structure,General Practitioner,Internal Medicine Physician
+314908006,Extra-embryonic structure,Obstetrician,Gynecologist
+86762007,Structure of digestive system,Gastroenterologist,General Surgeon
+116003000,Structure of immune system,Immunologist,Allergist
+305072005,Structure of breast and/or endocrine system,General Surgeon,Endocrinologist
+714488006,Structure of subdivision of organ system,General Practitioner,Internal Medicine Physician
+57645008,Structure of special senses organ system,ENT Specialist,Neurologist
+281213008,Structure of back of trunk and/or neck,Orthopedic Surgeon,Physiatrist
+38033009,Amputation stump,Orthopedic Surgeon,Physiatrist
+80985008,Skeletal muscle fiber,Orthopedic Surgeon,Rheumatologist
+707862002,Structure of skin and/or mucous membrane,Dermatologist,ENT Specialist
+414387006,Structure of hematological system,Hematologist,Oncologist

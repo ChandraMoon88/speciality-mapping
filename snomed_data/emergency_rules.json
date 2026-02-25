@@ -1,0 +1,368 @@
+{
+    "rules": [
+        {
+            "rule_id": 1,
+            "symptom_pattern": "Chest pain + Shortness of breath",
+            "keywords": [
+                "chest pain",
+                "shortness of breath",
+                "dyspnea",
+                "breathing difficulty",
+                "cant breathe",
+                "cannot breathe"
+            ],
+            "required_any": [
+                "chest pain",
+                "chest tightness",
+                "chest pressure"
+            ],
+            "required_with": [
+                "shortness of breath",
+                "dyspnea",
+                "breathing difficulty",
+                "difficulty breathing",
+                "cant breathe",
+                "cannot breathe"
+            ],
+            "priority": "emergency",
+            "specialist_override": "Cardiologist",
+            "secondary_override": "Emergency Medicine Physician"
+        },
+        {
+            "rule_id": 2,
+            "symptom_pattern": "Severe headache + Neck stiffness",
+            "keywords": [
+                "severe headache",
+                "worst headache",
+                "thunderclap headache",
+                "neck stiffness",
+                "stiff neck",
+                "neck rigidity"
+            ],
+            "required_any": [
+                "severe headache",
+                "worst headache",
+                "thunderclap headache",
+                "sudden headache"
+            ],
+            "required_with": [
+                "neck stiffness",
+                "stiff neck",
+                "neck rigidity",
+                "neck pain"
+            ],
+            "priority": "emergency",
+            "specialist_override": "Neurologist",
+            "secondary_override": "Emergency Medicine Physician"
+        },
+        {
+            "rule_id": 3,
+            "symptom_pattern": "Crushing chest pain (heart attack signs)",
+            "keywords": [
+                "crushing chest pain",
+                "chest pressure",
+                "chest tightness",
+                "heart attack",
+                "myocardial infarction",
+                "radiating arm pain"
+            ],
+            "required_any": [
+                "crushing chest pain",
+                "chest pressure",
+                "heart attack",
+                "radiating arm pain",
+                "jaw pain chest"
+            ],
+            "required_with": [],
+            "priority": "emergency",
+            "specialist_override": "Cardiologist",
+            "secondary_override": "Emergency Medicine Physician"
+        },
+        {
+            "rule_id": 4,
+            "symptom_pattern": "Stroke symptoms",
+            "keywords": [
+                "sudden numbness",
+                "face drooping",
+                "arm weakness",
+                "speech difficulty",
+                "slurred speech",
+                "stroke",
+                "sudden confusion",
+                "sudden vision loss"
+            ],
+            "required_any": [
+                "stroke",
+                "face drooping",
+                "slurred speech",
+                "sudden numbness one side",
+                "sudden confusion",
+                "sudden vision loss"
+            ],
+            "required_with": [],
+            "priority": "emergency",
+            "specialist_override": "Neurologist",
+            "secondary_override": "Emergency Medicine Physician"
+        },
+        {
+            "rule_id": 5,
+            "symptom_pattern": "Abdominal pain + Fever (possible appendicitis/peritonitis)",
+            "keywords": [
+                "abdominal pain",
+                "stomach pain",
+                "belly pain",
+                "fever",
+                "vomiting"
+            ],
+            "required_any": [
+                "severe abdominal pain",
+                "severe stomach pain",
+                "abdominal pain",
+                "stomach pain"
+            ],
+            "required_with": [
+                "fever",
+                "vomiting",
+                "nausea"
+            ],
+            "priority": "high",
+            "specialist_override": "General Surgeon",
+            "secondary_override": "Gastroenterologist"
+        },
+        {
+            "rule_id": 6,
+            "symptom_pattern": "Suicidal thoughts / Self-harm",
+            "keywords": [
+                "suicidal",
+                "suicide",
+                "kill myself",
+                "self harm",
+                "self-harm",
+                "want to die",
+                "end my life",
+                "no reason to live"
+            ],
+            "required_any": [
+                "suicidal",
+                "suicide",
+                "kill myself",
+                "self harm",
+                "self-harm",
+                "want to die",
+                "end my life"
+            ],
+            "required_with": [],
+            "priority": "emergency",
+            "specialist_override": "Psychiatrist",
+            "secondary_override": "Emergency Medicine Physician"
+        },
+        {
+            "rule_id": 7,
+            "symptom_pattern": "Severe allergic reaction / Anaphylaxis",
+            "keywords": [
+                "anaphylaxis",
+                "severe allergic",
+                "throat swelling",
+                "tongue swelling",
+                "difficulty swallowing breathing",
+                "hives all over"
+            ],
+            "required_any": [
+                "anaphylaxis",
+                "severe allergic reaction",
+                "throat swelling",
+                "tongue swelling",
+                "can't swallow",
+                "cant swallow"
+            ],
+            "required_with": [],
+            "priority": "emergency",
+            "specialist_override": "Allergist",
+            "secondary_override": "Emergency Medicine Physician"
+        },
+        {
+            "rule_id": 8,
+            "symptom_pattern": "Severe bleeding / Hemorrhage",
+            "keywords": [
+                "severe bleeding",
+                "hemorrhage",
+                "uncontrolled bleeding",
+                "blood loss",
+                "vomiting blood",
+                "coughing blood",
+                "blood in stool"
+            ],
+            "required_any": [
+                "severe bleeding",
+                "hemorrhage",
+                "uncontrolled bleeding",
+                "vomiting blood",
+                "coughing blood"
+            ],
+            "required_with": [],
+            "priority": "emergency",
+            "specialist_override": "Emergency Medicine Physician",
+            "secondary_override": "General Surgeon"
+        },
+        {
+            "rule_id": 9,
+            "symptom_pattern": "Seizures",
+            "keywords": [
+                "seizure",
+                "seizures",
+                "convulsion",
+                "convulsions",
+                "fitting",
+                "epileptic"
+            ],
+            "required_any": [
+                "seizure",
+                "seizures",
+                "convulsion",
+                "convulsions",
+                "fitting"
+            ],
+            "required_with": [],
+            "priority": "high",
+            "specialist_override": "Neurologist",
+            "secondary_override": "Emergency Medicine Physician"
+        },
+        {
+            "rule_id": 10,
+            "symptom_pattern": "Severe burns",
+            "keywords": [
+                "severe burn",
+                "third degree burn",
+                "chemical burn",
+                "electrical burn",
+                "burn face",
+                "burn hands"
+            ],
+            "required_any": [
+                "severe burn",
+                "third degree burn",
+                "chemical burn",
+                "electrical burn"
+            ],
+            "required_with": [],
+            "priority": "emergency",
+            "specialist_override": "Burn Specialist",
+            "secondary_override": "Emergency Medicine Physician"
+        },
+        {
+            "rule_id": 11,
+            "symptom_pattern": "Loss of consciousness / Fainting",
+            "keywords": [
+                "unconscious",
+                "loss of consciousness",
+                "fainted",
+                "fainting",
+                "passed out",
+                "unresponsive",
+                "collapsed"
+            ],
+            "required_any": [
+                "unconscious",
+                "loss of consciousness",
+                "passed out",
+                "unresponsive",
+                "collapsed"
+            ],
+            "required_with": [],
+            "priority": "high",
+            "specialist_override": "Emergency Medicine Physician",
+            "secondary_override": "Neurologist"
+        },
+        {
+            "rule_id": 12,
+            "symptom_pattern": "Poisoning / Overdose",
+            "keywords": [
+                "poisoning",
+                "overdose",
+                "ingested poison",
+                "drug overdose",
+                "toxic ingestion",
+                "swallowed chemicals"
+            ],
+            "required_any": [
+                "poisoning",
+                "overdose",
+                "drug overdose",
+                "swallowed chemicals",
+                "toxic ingestion"
+            ],
+            "required_with": [],
+            "priority": "emergency",
+            "specialist_override": "Toxicologist",
+            "secondary_override": "Emergency Medicine Physician"
+        },
+        {
+            "rule_id": 13,
+            "symptom_pattern": "Severe trauma / Fracture",
+            "keywords": [
+                "broken bone",
+                "fracture",
+                "severe injury",
+                "trauma",
+                "car accident",
+                "fall injury",
+                "bone sticking out"
+            ],
+            "required_any": [
+                "broken bone",
+                "fracture",
+                "severe injury",
+                "car accident",
+                "bone sticking out"
+            ],
+            "required_with": [],
+            "priority": "high",
+            "specialist_override": "Orthopedic Surgeon",
+            "secondary_override": "Emergency Medicine Physician"
+        },
+        {
+            "rule_id": 14,
+            "symptom_pattern": "High fever in children",
+            "keywords": [
+                "high fever child",
+                "baby fever",
+                "infant fever",
+                "child high temperature",
+                "febrile seizure"
+            ],
+            "required_any": [
+                "high fever child",
+                "baby fever",
+                "infant fever",
+                "febrile seizure",
+                "child high temperature"
+            ],
+            "required_with": [],
+            "priority": "high",
+            "specialist_override": "Pediatrician",
+            "secondary_override": "Emergency Medicine Physician"
+        },
+        {
+            "rule_id": 15,
+            "symptom_pattern": "Severe eye injury / Sudden vision loss",
+            "keywords": [
+                "eye injury",
+                "chemical in eye",
+                "sudden blindness",
+                "sudden vision loss",
+                "eye trauma"
+            ],
+            "required_any": [
+                "eye injury",
+                "chemical in eye",
+                "sudden blindness",
+                "sudden vision loss",
+                "eye trauma"
+            ],
+            "required_with": [],
+            "priority": "high",
+            "specialist_override": "Ophthalmologist",
+            "secondary_override": "Emergency Medicine Physician"
+        }
+    ]
+}

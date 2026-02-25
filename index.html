@@ -514,7 +514,7 @@
     </header>
 
     <main class="main-container">
-        
+
         <aside class="input-panel">
             <h2 class="panel-title">📝 Describe Your Symptoms</h2>
 
@@ -560,36 +560,36 @@
             </div>
         </aside>
 
-        
+
         <section class="response-panel">
             <div class="response-header">
                 <h2 class="response-title">Analysis Result</h2>
                 <span class="language-badge" id="detectedLang">--</span>
             </div>
 
-            
+
             <div class="empty-state" id="emptyState">
                 <div class="empty-state-icon">💬</div>
                 <h3>No Analysis Yet</h3>
                 <p>Enter your symptoms on the left and click "Analyze" to get personalized health guidance.</p>
             </div>
 
-            
+
             <div class="loading" id="loadingState">
                 <div class="spinner"></div>
                 <p>Analyzing your symptoms...</p>
             </div>
 
-            
+
             <div class="result-content" id="resultContent">
-                
+
                 <div class="non-medical-message" id="nonMedicalMsg" style="display: none;">
                     <h3>⚠️ Not a Medical Query</h3>
                     <p>Please describe your health symptoms or concerns. For example: "I have a headache" or "chest
                         pain".</p>
                 </div>
 
-                
+
                 <div id="medicalResult">
                     <div class="severity-badge" id="severityBadge">
                         <span id="severityIcon">✓</span>
@@ -597,7 +597,7 @@
                     </div>
 
                     <div class="ai-response" id="aiResponse" style="display:none;"></div>
-                    
+
 
                     <div class="specialists-section" id="specialistsSection" style="display: none;">
                         <h4>Select a Specialist to Continue</h4>
@@ -743,12 +743,11 @@
 
             let cardIndex = 0;
             priorityBlocks.forEach(block => {
-
-                const headerMatch = block.match(/Priority\s*(\d+):\s*(.+?)\s*-\s*Score:\s*([\d\.,]+)%?/i);
+                const headerMatch = block.match(/Priority\s*(\d+):\s*([^\n\r-]+?)(?:\s*-\s*Score:.*?)?(?=\n|$)/i);
                 if (!headerMatch) return;
 
                 const priorityNum = parseInt(headerMatch[1]);
-                const name = headerMatch[2].trim();
+                const name = headerMatch[2].trim().replace(/\*\*/g, '');
 
 
                 const reasoningMatch = block.match(/Reasoning:\s*(.+?)(?=\n\n|$)/is);
@@ -786,9 +785,9 @@
                 for (let i = 1; i <= 3; i++) {
                     const match = priorityBlocks.find(b => b.match(new RegExp(`Priority\\s*${i}:`, 'i')));
                     if (match) {
-                        const nameMatch = match.match(new RegExp(`Priority\\s*${i}:\\s*([^-]+)`, 'i'));
+                        const nameMatch = match.match(new RegExp(`Priority\\s*${i}:\\s*([^\n\r]+?)(?=\\n|$)`, 'i'));
                         if (nameMatch) {
-                            specialistNames.push(nameMatch[1].replace(/[🥇🥈🥉]/g, '').trim());
+                            specialistNames.push(nameMatch[1].replace(/[🥇🥈🥉]/g, '').replace(/\*/g, '').trim());
                         }
                     }
                 }
@@ -796,24 +795,20 @@
 
                 if (specialistNames.length > 0) {
                     const headerDiv = document.createElement('div');
-                    headerDiv.style.marginBottom = "12px";
+                    headerDiv.style.marginBottom = "16px";
                     headerDiv.style.fontWeight = "600";
                     headerDiv.style.color = "#1f2937";
-                    headerDiv.style.backgroundColor = "#f3f4f6";
-                    headerDiv.style.padding = "10px";
-                    headerDiv.style.borderRadius = "8px";
-                    headerDiv.style.borderLeft = "4px solid #667eea";
+                    headerDiv.style.fontSize = "15px";
 
-
-                    let message = `For your symptoms consult <strong>${specialistNames[0]}</strong> first`;
+                    let message = `For your symptoms consult ${specialistNames[0]} first`;
                     if (specialistNames.length >= 2) {
-                        message += `, subsequently <strong>${specialistNames[1]}</strong>`;
+                        message += `, subsequently ${specialistNames[1]}`;
                     }
                     if (specialistNames.length >= 3) {
-                        message += `, <strong>${specialistNames[2]}</strong>`;
+                        message += `, ${specialistNames[2]}`;
                     }
                     message += `, in that order.`;
-                    headerDiv.innerHTML = message;
+                    headerDiv.textContent = message;
 
                     specialistsList.insertBefore(headerDiv, specialistsList.firstChild);
                 }
@@ -830,7 +825,7 @@
                 const response = await fetch(`${API_BASE}/tts`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ text: text.substring(0, 500), language: lang })
+                    body: JSON.stringify({ text: text, language: lang })
                 });
 
                 if (response.ok) {
